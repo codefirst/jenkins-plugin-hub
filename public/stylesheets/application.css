@@ -2,6 +2,10 @@ body {
   margin-top: 40px;
 }
 
+.logo img {
+  width: 90%;
+}
+
 p.lead {
   color: #666;
   margin-left: 10px;

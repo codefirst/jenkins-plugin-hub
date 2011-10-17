@@ -1,10 +1,17 @@
 %header
  .container
-  %h1 Jenkins Plugin Hub
-  %p.lead
-   This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed. Now
-   = @plugins['plugins'].size
-   plugins are avalable.
+  .row
+   .span2.logo
+    = image_tag('icon.png')
+   .span14
+    %h1
+     Jenkins Plugin Hub
+    %p.lead
+     This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed.
+     %br
+     Now
+     = @plugins['plugins'].size
+     plugins are avalable.
 
 .container
  .row

@@ -1,4 +1,4 @@
-class JenkinsPluginViewer < Padrino::Application
+class JenkinsPluginHub < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers

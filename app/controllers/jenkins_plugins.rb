@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'json'
-JenkinsPluginViewer.controllers :jenkins_plugins do
+JenkinsPluginHub.controllers :jenkins_plugins do
 
   get :show do
     json = ''

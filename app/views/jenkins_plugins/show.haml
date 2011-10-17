@@ -1,15 +1,23 @@
 %header
  .container
   %h1 Jenkins Plugin Hub
-  %p.lead This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed.
+  %p.lead
+   This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed. Now
+   = @plugins['plugins'].size
+   plugins are avalable.
 
 .container
  .row
   %table.zebra-striped
    %tr
     %th Name
+    %th Release
     %th Description
    - @plugins['plugins'].each do |key, plugin|
     %tr
      %td.name= link_to(key, plugin['wiki'])
+     %td.release= plugin['releaseTimestamp']
      %td.discription= plugin['excerpt']
+
+.container
+ %footer Copyright (C) 2011 codefirst.org. All rights reserved.

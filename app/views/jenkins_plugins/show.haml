@@ -11,11 +11,13 @@
   %table.zebra-striped
    %tr
     %th Name
+    %th Version
     %th Release
     %th Description
    - @plugins['plugins'].each do |key, plugin|
     %tr
      %td.name= link_to(key, plugin['wiki'])
+     %td.version= plugin['version']
      %td.release= plugin['releaseTimestamp']
      %td.discription= plugin['excerpt']
 

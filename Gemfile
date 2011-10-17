@@ -10,6 +10,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
 gem 'haml'
+gem 'json'
 
 # Test requirements
 

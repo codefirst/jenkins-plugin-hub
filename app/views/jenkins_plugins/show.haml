@@ -1,4 +1,15 @@
-- @plugins['plugins'].each do |key, plugin|
-  .plugin
-    .name= key
-    .discription= plugin['excerpt']
+%header
+ .container
+  %h1 Jenkins Plugin Hub
+  %p.lead This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed.
+
+.container
+ .row
+  %table.zebra-striped
+   %tr
+    %th Name
+    %th Description
+   - @plugins['plugins'].each do |key, plugin|
+    %tr
+     %td.name= link_to(key, plugin['wiki'])
+     %td.discription= plugin['excerpt']

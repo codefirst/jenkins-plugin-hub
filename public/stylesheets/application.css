@@ -1,9 +1,9 @@
-.plugin {
-  border: 1px solid black;
-  margin: 5px 0px 10px 0px;
+body {
+  margin-top: 40px;
 }
 
-.plugin > .name {
-  border-bottom: 1px solid black;
-  background-color: #ccc;
+p.lead {
+  color: #666;
+  margin-left: 10px;
+  margin-bottom: 30px;
 }

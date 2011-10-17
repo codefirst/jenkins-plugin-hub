@@ -1,9 +1,8 @@
 !!! Strict
 %html
   %head
-    %title= [@title, "Padrino Sample Blog"].compact.join(" | ")
-    = stylesheet_link_tag 'reset', 'application'
+    %title= [@title, "Jenkins Plugin Hub"].compact.join(" | ")
+    = stylesheet_link_tag 'bootstrap.min', 'application'
     = yield_content :include
   %body
-    #container
-      #main= yield
+    = yield

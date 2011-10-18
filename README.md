@@ -9,7 +9,7 @@ Build
     $ bundle install --path vendor/plugins
     $ bundle exec padrino start
 
-access to http://localhost:3000/jenkins_plugins/show
+access to http://localhost:3000
 
 Author
 -----------------------

@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 JenkinsPluginHub.controllers :jenkins_plugins do
 
-  get :show do
+  get :show, :map => '/' do
     json = ''
     open('http://mirror.xmission.com/jenkins/updates/update-center.json') do |f|
       json = f.read

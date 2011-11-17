@@ -1,9 +1,26 @@
 !!! Strict
 %html
-  %head
-    %title= [@title, "Jenkins Plugin Hub"].compact.join(" | ")
-    = stylesheet_link_tag 'bootstrap.min', 'application'
-    = yield_content :include
-    = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'
-  %body
-    = yield
+ %head
+  %title= [@title, "Jenkins Plugin Hub"].compact.join(" | ")
+  = stylesheet_link_tag 'bootstrap.min', 'application'
+  = yield_content :include
+  = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'
+ %body
+  %header
+   .container
+    .row
+     .span2.logo
+      = image_tag('icon.png')
+     .span14
+      %h1
+       Jenkins Plugin Hub
+      %p.lead
+       This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed.
+       %br
+       Now
+       = @plugins['plugins'].size
+       plugins are available.
+  = yield
+  .container
+   %footer Copyright (C) 2011 codefirst.org. All rights reserved.
+

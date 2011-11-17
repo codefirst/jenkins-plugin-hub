@@ -1,32 +1,40 @@
-%header
- .container
-  .row
-   .span2.logo
-    = image_tag('icon.png')
-   .span14
-    %h1
-     Jenkins Plugin Hub
-    %p.lead
-     This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed.
-     %br
-     Now
-     = @plugins['plugins'].size
-     plugins are available.
-
 .container
  .row
-  %table.zebra-striped
-   %tr
-    %th Name
-    %th Version
-    %th Release
-    %th Description
-   - @plugins['plugins'].each do |key, plugin|
+  %ul#filter.pills{:style => 'margin-bottom:0'}
+   %li.active= link_to "All", "#"
+   - @categories.each do |category|
+    %li= link_to category, "?category=#{category}"
+ .row
+  %table#table.zebra-striped
+   %thead
     %tr
+     %th Name
+     %th Version
+     %th Release
+     %th Description
+   %tbody
+   - @plugins['plugins'].each do |key, plugin|
+    %tr{:class => (plugin['labels']||[]).join(' ')}
      %td.name= link_to(key, plugin['wiki'])
      %td.version= plugin['version']
      %td.release= plugin['releaseTimestamp']
      %td.discription= plugin['excerpt']
 
-.container
- %footer Copyright (C) 2011 codefirst.org. All rights reserved.
+:javascript
+ $(function() {
+   var filter = function(category) {
+     $('#table tbody tr').each(function() {
+       if (category == 'All' || $(this).hasClass(category)) {
+         $(this).show();
+       } else {
+         $(this).hide();
+       }
+     });
+   }
+   $('#filter li').bind("click", function(e) {
+     $('#filter li').removeClass("active");
+     $(e.target).parent().addClass("active");
+     filter(e.target.text);
+     return false;
+   });
+ });

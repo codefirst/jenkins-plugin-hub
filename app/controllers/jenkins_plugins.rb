@@ -4,13 +4,10 @@ JenkinsPluginHub.controllers :jenkins_plugins do
 
   get :show, :map => '/', :provides => [:html, :rss] do
     json = ''
-    open(File.dirname(__FILE__) + '/../../tmp/update-center.json') do |f|
+    json_url = File.dirname(__FILE__) + '/../../tmp/update-center.json'
+    json_url = 'http://mirror.xmission.com/jenkins/updates/update-center.json' unless File.exist?(json_url)
+    open(json_url) do |f|
       json = f.read
-    end
-    if json == ''
-      open('http://mirror.xmission.com/jenkins/updates/update-center.json') do |f|
-        json = f.read
-      end
     end
     json = json.sub('updateCenter.post(', '').sub(/\);$/, '')
 

@@ -5,8 +5,11 @@
    - @categories.each do |category|
     %li= link_to category, "?category=#{category}"
  .row
-  .span5{:class => 'offset11', :style => 'text-align:right'}
-   = image_tag('ajax-loader.gif', :id => 'search-loader', :style => 'display:none')
+  .span11{:style => 'padding-top: 4px;color: #888;'}
+   %span{:id => 'item-count'}= @plugins['plugins'].size
+   items
+  .span5{:style => 'text-align:right'}
+   = image_tag('ajax-loader.gif', :id => 'search-loader', :style => 'display:none;padding-top: 4px;')
    %input{:id => 'search-box', :class => 'span4', :type => :text, :placeholder => 'Search', :style => 'margin-bottom: 5px'}
  .row
   %table#table.zebra-striped
@@ -29,14 +32,17 @@
    var filter = function(category, word) {
      $('#search-loader').show();
      var re = new RegExp(word, 'i');
+     var i = 0;
      $('#table tbody tr').each(function() {
        if ((category == 'All' || $(this).hasClass(category))
           && (word == '' || $(this).text().search(re) != -1)) {
          $(this).show();
+         i++;
        } else {
          $(this).hide();
        }
      });
+     $('#item-count').text(i);
      $('#search-loader').hide();
    }
    var last_category = 'All';

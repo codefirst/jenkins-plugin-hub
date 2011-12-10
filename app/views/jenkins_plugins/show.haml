@@ -26,26 +26,12 @@
 
 :javascript
  $(function() {
-   var filter = function(category) {
-     $('#table tbody tr').each(function() {
-       if (category == 'All' || $(this).hasClass(category)) {
-         $(this).show();
-       } else {
-         $(this).hide();
-       }
-     });
-   }
-   $('#filter li').bind("click", function(e) {
-     $('#filter li').removeClass("active");
-     $(e.target).parent().addClass("active");
-     filter(e.target.text);
-     return false;
-   });
-   var search = function(word) {
+   var filter = function(category, word) {
      $('#search-loader').show();
      var re = new RegExp(word, 'i');
      $('#table tbody tr').each(function() {
-       if ($(this).text().search(re) != -1) {
+       if ((category == 'All' || $(this).hasClass(category))
+          && (word == '' || $(this).text().search(re) != -1)) {
          $(this).show();
        } else {
          $(this).hide();
@@ -53,16 +39,22 @@
      });
      $('#search-loader').hide();
    }
+   var last_category = 'All';
+   $('#filter li').bind("click", function(e) {
+     $('#filter li').removeClass("active");
+     $(e.target).parent().addClass("active");
+
+     last_category = e.target.text;
+     filter(last_category, $('#search-box').attr('value'));
+
+     return false;
+   });
    var timer = 0;
    $('#search-box').bind("keyup", function(e) {
      var word = e.target.value;
      clearTimeout(timer);
      timer = setTimeout(function() {
-       if (word != '') {
-         search(word);
-       } else {
-         filter('All');
-       }
+       filter(last_category, word);
      }, 500);
    });
 

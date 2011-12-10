@@ -4,12 +4,31 @@ JenkinsPluginHub.controllers :jenkins_plugins do
 
   get :show, :map => '/', :provides => [:html, :rss] do
     json = ''
-    open('http://mirror.xmission.com/jenkins/updates/update-center.json') do |f|
-    #open(File.dirname(__FILE__) + '/../../tmp/update-center.json') do |f|
+    open(File.dirname(__FILE__) + '/../../tmp/update-center.json') do |f|
       json = f.read
     end
+    if json == ''
+      open('http://mirror.xmission.com/jenkins/updates/update-center.json') do |f|
+        json = f.read
+      end
+    end
     json = json.sub('updateCenter.post(', '').sub(/\);$/, '')
-    @plugins = JSON.parse(json)
+
+    @category = params[:category] || 'All'
+    @word = params[:word] || ''
+    @plugins = {'plugins' => {}}
+    @all_plugins_count = 0
+
+    JSON.parse(json)['plugins'].each do |key, value|
+      text = value['name'] + '\t' + value['excerpt']
+      re = Regexp.new(@word, Regexp::IGNORECASE)
+      if ((@category == 'All' || (value['labels']||[]).include?(@category)) &&
+          (@word == '' || re =~ text))
+        @plugins['plugins'][key] = value
+      end
+      @all_plugins_count += 1
+    end
+
     @categories = [
       "scm",
       "misc",

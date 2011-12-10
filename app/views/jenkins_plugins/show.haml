@@ -24,7 +24,7 @@
    %tbody
    - @plugins['plugins'].each do |key, plugin|
     %tr{:class => (plugin['labels']||[]).join(' ')}
-     %td.name= link_to(key, plugin['wiki'])
+     %td.name= link_to(plugin['title'], plugin['wiki'])
      %td.version= plugin['version']
      %td.release= time_ago_in_words(plugin['releaseTimestamp']) + " ago"
      %td.discription= plugin['excerpt']

@@ -17,7 +17,7 @@ JenkinsPluginHub.controllers :jenkins_plugins do
     @all_plugins_count = 0
 
     JSON.parse(json)['plugins'].each do |key, value|
-      text = value['name'] + '\t' + value['excerpt']
+      text = value['title'] + '\t' + value['excerpt']
       re = Regexp.new(@word, Regexp::IGNORECASE)
       if ((@category == 'All' || (value['labels']||[]).include?(@category)) &&
           (@word == '' || re =~ text))

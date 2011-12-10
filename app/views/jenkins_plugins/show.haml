@@ -5,6 +5,9 @@
    - @categories.each do |category|
     %li= link_to category, "?category=#{category}"
  .row
+  .span4{:class => 'offset12'}
+   %input{:id => 'search-box', :class => 'span4', :type => :text, :placeholder => 'Search', :style => 'margin-bottom: 5px'}
+ .row
   %table#table.zebra-striped
    %thead
     %tr
@@ -37,4 +40,28 @@
      filter(e.target.text);
      return false;
    });
+   var search = function(word) {
+     console.log("search " + word);
+     var re = new RegExp(word, 'i');
+     $('#table tbody tr').each(function() {
+       if ($(this).text().search(re) != -1) {
+         $(this).show();
+       } else {
+         $(this).hide();
+       }
+     });
+   }
+   var timer = 0;
+   $('#search-box').bind("keyup", function(e) {
+     var word = e.target.value;
+     clearTimeout(timer);
+     timer = setTimeout(function() {
+       if (word != '') {
+         search(word);
+       } else {
+         filter('All');
+       }
+     }, 500);
+   });
+
  });

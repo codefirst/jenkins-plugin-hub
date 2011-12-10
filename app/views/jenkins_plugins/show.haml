@@ -5,11 +5,13 @@
    - @categories.each do |category|
     %li= link_to category, "?category=#{category}"
  .row
-  .span11{:style => 'padding-top: 4px;color: #888;'}
-   %span{:id => 'item-count'}= @plugins['plugins'].size
-   items
-  .span5{:style => 'text-align:right'}
+  .span10
+   = link_to image_tag('feed-icon-28x28.png'), url_for(:jenkins_plugins, :show, :category => 'All', :word => '', :format => :rss)
+  .span6{:style => 'text-align:right'}
    = image_tag('ajax-loader.gif', :id => 'search-loader', :style => 'display:none;padding-top: 4px;')
+   %span{:id => 'item-count', :style => 'padding-top: 4px;color: #888;'}= @plugins['plugins'].size.to_s
+   %span{:style => 'padding-top: 4px;color: #888;'}
+    items
    %input{:id => 'search-box', :class => 'span4', :type => :text, :placeholder => 'Search', :style => 'margin-bottom: 5px'}
  .row
   %table#table.zebra-striped

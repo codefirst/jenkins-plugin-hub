@@ -1,0 +1,16 @@
+!!! XML
+%rss{ :version => "2.0" }
+ %channel
+  %title Jenkins Plugin Hub
+  %link= url_for(:jenkins_plugins, :show)
+  %description Jenkins Plugins
+  %language en-us
+  %pubDate= Time.now
+ - @plugins['plugins'].each do |key, plugin|
+  %item
+   %title= key + ' ' + plugin['version']
+   %description= plugin['excerpt']
+   %link= plugin['wiki']
+   %guid= plugin['wiki']
+   %author= plugin['developers'].map { |developer| developer['name'] }.join(', ')
+   %pubDate= plugin['releaseTimestamp']

@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 JenkinsPluginHub.controllers :jenkins_plugins do
 
-  get :show, :map => '/' do
+  get :show, :map => '/', :provides => [:html, :rss] do
     json = ''
     open('http://mirror.xmission.com/jenkins/updates/update-center.json') do |f|
     #open(File.dirname(__FILE__) + '/../../tmp/update-center.json') do |f|
@@ -33,6 +33,10 @@ JenkinsPluginHub.controllers :jenkins_plugins do
       "envfile",
       "must-be-labeled"
     ]
-    render 'jenkins_plugins/show'
+    if content_type == :rss
+      render 'jenkins_plugins/show_rss'
+    else
+      render 'jenkins_plugins/show'
+    end
   end
 end

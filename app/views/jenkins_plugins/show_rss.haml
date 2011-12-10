@@ -2,7 +2,7 @@
 %rss{ :version => "2.0" }
  %channel
   %title Jenkins Plugin Hub
-  %link= url_for(:jenkins_plugins, :show)
+  %link= "http://" + request.env["HTTP_HOST"] + url_for(:jenkins_plugins, :show)
   %description Jenkins Plugins
   %language en-us
   %pubDate= Time.now

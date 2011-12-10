@@ -5,7 +5,8 @@
    - @categories.each do |category|
     %li= link_to category, "?category=#{category}"
  .row
-  .span4{:class => 'offset12'}
+  .span5{:class => 'offset11', :style => 'text-align:right'}
+   = image_tag('ajax-loader.gif', :id => 'search-loader', :style => 'display:none')
    %input{:id => 'search-box', :class => 'span4', :type => :text, :placeholder => 'Search', :style => 'margin-bottom: 5px'}
  .row
   %table#table.zebra-striped
@@ -41,7 +42,7 @@
      return false;
    });
    var search = function(word) {
-     console.log("search " + word);
+     $('#search-loader').show();
      var re = new RegExp(word, 'i');
      $('#table tbody tr').each(function() {
        if ($(this).text().search(re) != -1) {
@@ -50,6 +51,7 @@
          $(this).hide();
        }
      });
+     $('#search-loader').hide();
    }
    var timer = 0;
    $('#search-box').bind("keyup", function(e) {

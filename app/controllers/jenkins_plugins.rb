@@ -16,7 +16,7 @@ JenkinsPluginHub.controllers :jenkins_plugins do
     end
     unless @cached
       json = open(::DEFAULT_URL).read
-      open(::CACHE_PATH, 'w').write(json)
+      open(::CACHE_PATH, 'wb').write(json)
       mtime = File::mtime(::CACHE_PATH)
     end
 

@@ -13,4 +13,4 @@
    %link= plugin['wiki']
    %guid= plugin['wiki']
    %author= plugin['developers'].map { |developer| developer['name'] }.join(', ')
-   %pubDate= plugin['releaseTimestamp']
+   %pubDate= Time.parse(plugin['releaseTimestamp'])

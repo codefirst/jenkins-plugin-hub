@@ -8,7 +8,7 @@
   %pubDate= @mtime
  - @plugins['plugins'].to_a.sort { |a, b| Time.parse(b[1]['releaseTimestamp']) - Time.parse(a[1]['releaseTimestamp']) }.each do |key, plugin|
   %item
-   %title= key + ' ' + plugin['version']
+   %title= plugin['title'] + ' ' + plugin['version']
    %description= plugin['excerpt']
    %link= plugin['wiki']
    %guid= plugin['wiki']

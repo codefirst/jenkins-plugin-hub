@@ -2,20 +2,31 @@ require 'open-uri'
 require 'json'
 JenkinsPluginHub.controllers :jenkins_plugins do
   DEFAULT_URL ='http://mirror.xmission.com/jenkins/updates/update-center.json'
+  CACHE_PATH = File.dirname(__FILE__) + '/../../tmp/update-center.json'
 
   get :show, :map => '/', :provides => [:html, :rss] do
+    @cached = false
     json = ''
-    json_url = File.dirname(__FILE__) + '/../../tmp/update-center.json'
-    json_url =  ::DEFAULT_URL unless File.exist?(json_url)
-    open(json_url) do |f|
-      json = f.read
+    if File.exist?(::CACHE_PATH)
+      mtime = File::mtime(::CACHE_PATH)
+      if Time.now - 6 * 60 * 60 < mtime
+        json = open(::CACHE_PATH).read
+        @cached = true
+      end
     end
+    unless @cached
+      json = open(::DEFAULT_URL).read
+      open(::CACHE_PATH, 'w').write(json)
+      mtime = File::mtime(::CACHE_PATH)
+    end
+
     json = json.sub('updateCenter.post(', '').sub(/\);$/, '')
 
     @category = params[:category] || 'All'
     @word = params[:word] || ''
     @plugins = {'plugins' => {}}
     @all_plugins_count = 0
+    @mtime = mtime
 
     JSON.parse(json)['plugins'].each do |key, value|
       text = value['title'] + '\t' + value['excerpt']

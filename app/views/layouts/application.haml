@@ -19,7 +19,10 @@
        %br
        Now
        = @all_plugins_count
-       plugins are available.
+       plugins are available. Last update:
+       = time_ago_in_words(@mtime)
+       ago.
+       = '(cached)' if @cached
   = yield
   .container
    %footer Copyright (C) 2011 codefirst.org. All rights reserved.

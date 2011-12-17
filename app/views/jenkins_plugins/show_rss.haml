@@ -5,7 +5,7 @@
   %link= "http://" + request.env["HTTP_HOST"] + url_for(:jenkins_plugins, :show)
   %description Jenkins Plugins
   %language en-us
-  %pubDate= Time.now
+  %pubDate= @mtime
  - @plugins['plugins'].to_a.sort { |a, b| Time.parse(b[1]['releaseTimestamp']) - Time.parse(a[1]['releaseTimestamp']) }.each do |key, plugin|
   %item
    %title= key + ' ' + plugin['version']

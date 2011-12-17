@@ -22,7 +22,7 @@
      %th{:style => 'width:100px'} Release
      %th Description
    %tbody
-   - @plugins['plugins'].each do |key, plugin|
+   - @plugins['plugins'].to_a.sort { |a, b| Time.parse(b[1]['releaseTimestamp']) - Time.parse(a[1]['releaseTimestamp']) }.each do |key, plugin|
     %tr{:class => (plugin['labels']||[]).join(' ')}
      %td.name= link_to(plugin['title'], plugin['wiki'])
      %td.version= plugin['version']

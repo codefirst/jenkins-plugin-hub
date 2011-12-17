@@ -1,7 +1,8 @@
 Jenkins Plugin Hub
 =======================
 
-This site is a hub site for Jekins plugins. This site provides you Jenkins plugins quick search and RSS feed.
+This site is a hub site for Jekins plugins.
+ This site provides you quick search and RSS feed for Jenkins plugins.
 
 Build
 -----------------------
@@ -14,6 +15,15 @@ access to http://localhost:3000
 Author
 -----------------------
 
-* @suer
 * @mallowlabs
+* @suer
+
+Credits
+-----------------------
+
+* [Twitter Bootstrap](twitter.github.com/bootstrap/)
+* [jQuery](http://jquery.com/)
+* [Padrino Ruby Web Framework](http://www.padrinorb.com)
+* Jenkins Icon from Original [Jenkins](http://jenkins-ci.org)
+* RSS Feed Icon from [FEED ICONS](http://www.feedicons.com/)
 

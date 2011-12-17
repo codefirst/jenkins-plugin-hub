@@ -11,6 +11,5 @@
    %title= plugin['title'] + ' ' + plugin['version']
    %description= plugin['excerpt']
    %link= plugin['wiki']
-   %guid= plugin['wiki']
    %author= plugin['developers'].map { |developer| developer['name'] }.join(', ')
    %pubDate= Time.parse(plugin['releaseTimestamp'])

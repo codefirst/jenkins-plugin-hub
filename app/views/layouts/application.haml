@@ -10,7 +10,7 @@
    .container
     .row
      .span2.logo
-      = image_tag('icon.png')
+      = link_to image_tag('icon.png'), url_for(:jenkins_plugins, :show)
      .span14
       %h1
        Jenkins Plugin Hub

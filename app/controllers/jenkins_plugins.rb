@@ -1,11 +1,12 @@
 require 'open-uri'
 require 'json'
 JenkinsPluginHub.controllers :jenkins_plugins do
+  DEFAULT_URL ='http://mirror.xmission.com/jenkins/updates/update-center.json'
 
   get :show, :map => '/', :provides => [:html, :rss] do
     json = ''
     json_url = File.dirname(__FILE__) + '/../../tmp/update-center.json'
-    json_url = 'http://mirror.xmission.com/jenkins/updates/update-center.json' unless File.exist?(json_url)
+    json_url =  ::DEFAULT_URL unless File.exist?(json_url)
     open(json_url) do |f|
       json = f.read
     end

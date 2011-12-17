@@ -6,7 +6,7 @@
   %description Jenkins Plugins
   %language en-us
   %pubDate= Time.now
- - @plugins['plugins'].each do |key, plugin|
+ - @plugins['plugins'].to_a.sort { |a, b| Time.parse(b[1]['releaseTimestamp']) - Time.parse(a[1]['releaseTimestamp']) }.each do |key, plugin|
   %item
    %title= key + ' ' + plugin['version']
    %description= plugin['excerpt']

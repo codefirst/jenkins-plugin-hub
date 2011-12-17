@@ -1,9 +1,10 @@
 .container
  .row
-  %ul#filter.pills{:style => 'margin-bottom:0'}
-   %li{:class => (@category == 'All')?'active':''}= link_to "All", "#"
-   - @categories.each do |category|
-    %li{:class => (@category == category)?'active':''}= link_to category, "?category=#{category}"
+  .span16
+   %ul#filter.pills{:style => 'margin-bottom:0'}
+    %li{:class => (@category == 'All')?'active':''}= link_to "All", "#"
+    - @categories.each do |category|
+     %li{:class => (@category == category)?'active':''}= link_to category, "?category=#{category}"
  .row
   .span10
    = link_to image_tag('feed-icon-28x28.png'), url_for(:jenkins_plugins, :show, :category => @category, :word => @word, :format => :rss)
@@ -15,20 +16,21 @@
    %form{:method => :get, :style => 'display: inline;'}
     %input{:id => 'search-box', :class => 'span4', :type => :text, :placeholder => 'Search', :style => 'margin-bottom: 5px', :value => @word, :name => 'word'}
  .row
-  %table#table.zebra-striped
-   %thead
-    %tr
-     %th Name
-     %th Version
-     %th{:style => 'width:100px'} Release
-     %th Description
-   %tbody
-   - @plugins['plugins'].to_a.sort { |a, b| Time.parse(b[1]['releaseTimestamp']) - Time.parse(a[1]['releaseTimestamp']) }.each do |key, plugin|
-    %tr{:class => (plugin['labels']||[]).join(' ')}
-     %td.name= link_to(plugin['title'], plugin['wiki'])
-     %td.version= plugin['version']
-     %td.release= time_ago_in_words(plugin['releaseTimestamp']) + " ago"
-     %td.discription= plugin['excerpt']
+  .span16
+   %table#table.zebra-striped
+    %thead
+     %tr
+      %th Name
+      %th Version
+      %th{:style => 'width:100px'} Release
+      %th Description
+    %tbody
+    - @plugins['plugins'].to_a.sort { |a, b| Time.parse(b[1]['releaseTimestamp']) - Time.parse(a[1]['releaseTimestamp']) }.each do |key, plugin|
+     %tr{:class => (plugin['labels']||[]).join(' ')}
+      %td.name= link_to(plugin['title'], plugin['wiki'])
+      %td.version= plugin['version']
+      %td.release= time_ago_in_words(plugin['releaseTimestamp']) + " ago"
+      %td.discription= plugin['excerpt']
 
 :javascript
  $(function() {

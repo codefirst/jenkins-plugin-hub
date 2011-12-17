@@ -12,7 +12,8 @@
    %span{:id => 'item-count', :style => 'padding-top: 4px;color: #888;'}= @plugins['plugins'].size.to_s
    %span{:style => 'padding-top: 4px;color: #888;'}
     items
-   %input{:id => 'search-box', :class => 'span4', :type => :text, :placeholder => 'Search', :style => 'margin-bottom: 5px'}
+   %form{:method => :get, :style => 'display: inline;'}
+    %input{:id => 'search-box', :class => 'span4', :type => :text, :placeholder => 'Search', :style => 'margin-bottom: 5px', :value => @word, :name => 'word'}
  .row
   %table#table.zebra-striped
    %thead

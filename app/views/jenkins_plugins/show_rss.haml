@@ -9,7 +9,7 @@
   - @plugins['plugins'].to_a.sort { |a, b| Time.parse(b[1]['releaseTimestamp']) - Time.parse(a[1]['releaseTimestamp']) }.each do |key, plugin|
    %item
     %title= plugin['title'] + ' ' + plugin['version']
-    %description= plugin['excerpt']
+    %description= escape_html plugin['excerpt']
     %link= plugin['wiki']
     %author= plugin['developers'].map { |developer| developer['name'] }.join(', ')
     %pubDate= Time.parse(plugin['releaseTimestamp']).rfc2822

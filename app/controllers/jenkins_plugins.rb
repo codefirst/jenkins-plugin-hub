@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'json'
 JenkinsPluginHub.controllers :jenkins_plugins do
-  DEFAULT_URL ='http://mirror.xmission.com/jenkins/updates/update-center.json'
+  DEFAULT_URL ='http://updates.jenkins-ci.org/update-center.json'
   CACHE_PATH = File.dirname(__FILE__) + '/../../tmp/update-center.json'
   CATEGORIES = %w{scm misc notifier listview-column builder user ui
       report maven buildwrapper post-build upload external trigger

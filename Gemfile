@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Server requirements (defaults to WEBrick)
- gem 'thin'
+gem 'thin'
 # gem 'mongrel'
 
 # Project requirements
@@ -15,7 +15,7 @@ gem 'json'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.10.5'
+gem 'padrino', '0.12.1'
 
 # Or Padrino Edge
 # gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'

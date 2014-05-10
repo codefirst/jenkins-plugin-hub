@@ -1,7 +1,7 @@
-source :rubygems
+source 'https://rubygems.org'
 
 # Server requirements (defaults to WEBrick)
-# gem 'thin'
+ gem 'thin'
 # gem 'mongrel'
 
 # Project requirements

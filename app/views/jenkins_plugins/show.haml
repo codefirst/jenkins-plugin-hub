@@ -30,7 +30,7 @@
       %td.name= link_to(plugin['title'], plugin['wiki'])
       %td.version= plugin['version']
       %td.release= time_ago_in_words(plugin['releaseTimestamp']) + " ago"
-      %td.discription= plugin['excerpt']
+      %td.discription!= plugin['excerpt']
 
 :javascript
  $(function() {

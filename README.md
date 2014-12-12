@@ -1,8 +1,13 @@
 Jenkins Plugin Hub
 =======================
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+Overview
+-----------------------
+
 This site is a hub site for Jekins plugins.
- This site provides you quick search and RSS feed for Jenkins plugins.
+This site provides you quick search and RSS feed for Jenkins plugins.
 
 Build
 -----------------------

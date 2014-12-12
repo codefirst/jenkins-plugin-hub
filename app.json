@@ -1,0 +1,6 @@
+{
+  "name": "jenkins-plugin-hub",
+  "description": "This site is a hub site for Jekins plugins",
+  "repository": "https://github.com/codefirst/jenkins-plugin-hub/"
+}
+

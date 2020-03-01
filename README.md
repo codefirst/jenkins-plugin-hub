@@ -26,9 +26,9 @@ Author
 Credits
 -----------------------
 
-* [Twitter Bootstrap](twitter.github.com/bootstrap/)
-* [jQuery](http://jquery.com/)
+* [Twitter Bootstrap](https://twitter.github.com/bootstrap/)
+* [jQuery](https://jquery.com/)
 * [Padrino Ruby Web Framework](http://www.padrinorb.com)
-* Jenkins Icon from Original [Jenkins](http://jenkins-ci.org)
+* Jenkins Icon from Original [Jenkins](https://jenkins-ci.org)
 * RSS Feed Icon from [FEED ICONS](http://www.feedicons.com/)
 

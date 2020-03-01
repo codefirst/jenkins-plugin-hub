@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.5.7'
+
 # Server requirements (defaults to WEBrick)
 gem 'thin'
 # gem 'mongrel'

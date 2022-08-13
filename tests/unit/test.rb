@@ -37,4 +37,12 @@ class AppTest < Minitest::Test
     assert_includes(last_response.body, 'Jenkins Plugin Hub')
     assert_includes(last_response.body, 'Bitbucket OAuth')
   end
+
+  def test_rss
+    get '/.rss'
+    assert(last_response.ok?)
+    assert_includes(last_response.body, "<rss version='2.0'>")
+    assert_includes(last_response.body, 'Jenkins Plugin Hub')
+    assert_includes(last_response.body, 'Bitbucket OAuth')
+  end
 end

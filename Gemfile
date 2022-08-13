@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.7'
+ruby '2.7.6'
 
 # Server requirements (defaults to WEBrick)
 gem 'thin'

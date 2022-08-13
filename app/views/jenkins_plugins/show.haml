@@ -29,7 +29,7 @@
      %tr{:class => (plugin['labels']||[]).join(' ')}
       %td.name= link_to(plugin['title'], plugin['wiki'])
       %td.version= plugin['version']
-      %td.release= time_ago_in_words(plugin['releaseTimestamp']) + " ago"
+      %td.release= time_ago_in_words(Time.parse(plugin['releaseTimestamp'])) + " ago"
       %td.discription!= plugin['excerpt']
 
 :javascript

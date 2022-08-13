@@ -17,7 +17,7 @@ gem 'json'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.12.1'
+gem 'padrino', '0.15.1'
 
 # Or Padrino Edge
 # gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'

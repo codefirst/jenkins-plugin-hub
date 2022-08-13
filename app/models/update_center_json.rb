@@ -1,8 +1,15 @@
 require 'open-uri'
+require 'tempfile'
+require 'fileutils'
 
 class UpdateCenterJSON
   DEFAULT_URL ='https://updates.jenkins-ci.org/update-center.json'
-  CACHE_PATH = File.dirname(__FILE__) + '/../../tmp/update-center.json'
+  TMP_PATH = if ENV['CI']
+    '/tmp/'
+  else
+    File.dirname(__FILE__) + '/../../tmp/'
+  end
+  CACHE_PATH = "#{TMP_PATH}update-center.json"
 
   def self.get
     cached = false
@@ -16,7 +23,11 @@ class UpdateCenterJSON
     end
     unless cached
       json = URI.open(DEFAULT_URL).read
-      open(CACHE_PATH, 'wb').write(json)
+      Tempfile.open('update-center.json') do |fp|
+        fp.write json
+        fp.close
+        FileUtils.copy(fp.path, CACHE_PATH)
+      end
       mtime = File::mtime(CACHE_PATH)
     end
 

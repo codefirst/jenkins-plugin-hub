@@ -1,30 +1,13 @@
-require 'open-uri'
 require 'json'
+
 JenkinsPluginHub.controllers :jenkins_plugins do
-  DEFAULT_URL ='https://updates.jenkins-ci.org/update-center.json'
-  CACHE_PATH = File.dirname(__FILE__) + '/../../tmp/update-center.json'
   CATEGORIES = %w{scm misc notifier listview-column builder user ui
       report maven buildwrapper post-build upload external trigger
       page-decorator slaves scm-related cluster cli envfile must-be-labeled
   }
 
   get :show, :map => '/', :provides => [:html, :rss] do
-    @cached = false
-    json = ''
-    if File.exist?(::CACHE_PATH)
-      mtime = File::mtime(::CACHE_PATH)
-      if Time.now - 6 * 60 * 60 < mtime
-        json = open(::CACHE_PATH).read
-        @cached = true
-      end
-    end
-    unless @cached
-      json = open(::DEFAULT_URL).read
-      open(::CACHE_PATH, 'wb').write(json)
-      mtime = File::mtime(::CACHE_PATH)
-    end
-
-    json = json.sub('updateCenter.post(', '').sub(/\);$/, '')
+    json, mtime, cached = UpdateCenterJSON.get
 
     @category = params[:category] || 'All'
     @categories = ::CATEGORIES
@@ -32,6 +15,7 @@ JenkinsPluginHub.controllers :jenkins_plugins do
     @plugins = {'plugins' => {}}
     @all_plugins_count = 0
     @mtime = mtime
+    @cached = cached
 
     JSON.parse(json)['plugins'].each do |key, value|
       text = value['title'] + '\t' + value['excerpt']

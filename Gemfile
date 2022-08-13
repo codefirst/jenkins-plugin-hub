@@ -29,4 +29,6 @@ gem 'padrino', '0.12.1'
 
 group :test do
   gem 'minitest'
+  gem 'rack-test'
+  gem 'webmock'
 end

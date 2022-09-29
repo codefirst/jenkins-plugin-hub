@@ -8,8 +8,9 @@ GEM
       rexml
     daemons (1.4.1)
     eventmachine (1.2.7)
-    haml (5.2.2)
-      temple (>= 0.8.0)
+    haml (6.0.3)
+      temple (>= 0.8.2)
+      thor
       tilt
     hashdiff (1.0.1)
     i18n (1.12.0)

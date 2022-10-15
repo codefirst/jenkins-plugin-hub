@@ -13,3 +13,5 @@ updates:
       interval: "weekly"
       timezone: "Asia/Tokyo"
       day: "friday"
+    ignore:
+      - dependency-name: "haml"
